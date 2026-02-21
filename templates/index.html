@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OpenAI Topic to PDF Generator</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <main class="container">
+    <h1>OpenAI Structured Content PDF Generator</h1>
+    <p class="subtitle">
+      Enter any topic and download a structured academic PDF generated using OpenAI.
+    </p>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <section class="alerts" aria-live="polite">
+          {% for message in messages %}
+            <p class="alert">{{ message }}</p>
+          {% endfor %}
+        </section>
+      {% endif %}
+    {% endwith %}
+
+    <form action="{{ url_for('generate_pdf') }}" method="post" class="topic-form">
+      <label for="topic">Topic</label>
+      <input
+        id="topic"
+        name="topic"
+        type="text"
+        placeholder="e.g., Artificial Intelligence in Healthcare"
+        required
+        minlength="3"
+      >
+      <button type="submit">Generate and Download PDF</button>
+    </form>
+
+    <section class="notes">
+      <h2>How it works</h2>
+      <ol>
+        <li>You enter a topic.</li>
+        <li>The app asks OpenAI to write structured academic content.</li>
+        <li>The response is automatically converted to PDF with proper headings and spacing.</li>
+        <li>Your browser downloads the PDF file.</li>
+      </ol>
+      <p><strong>Model:</strong> {{ model_name }}</p>
+    </section>
+  </main>
+</body>
+</html>
