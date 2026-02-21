@@ -4,12 +4,15 @@ from io import BytesIO
 from typing import List
 from xml.sax.saxutils import escape
 
+from dotenv import load_dotenv
 from flask import Flask, flash, redirect, render_template, request, send_file, url_for
 from openai import OpenAI
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
 from reportlab.lib.units import mm
 from reportlab.platypus import ListFlowable, ListItem, Paragraph, SimpleDocTemplate, Spacer
+
+load_dotenv()
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = os.getenv("FLASK_SECRET_KEY", "replace-me-in-production")

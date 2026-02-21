@@ -61,4 +61,5 @@ Open: `http://127.0.0.1:5000`
 ## Notes
 
 - Existing notebook files in `Breast cancer/` are untouched.
+- `.env` is loaded automatically on startup via `python-dotenv`.
 - If `OPENAI_API_KEY` is missing, the app shows an error message on submission.
